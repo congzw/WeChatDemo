@@ -4,6 +4,8 @@ using System.Web.Routing;
 using CommonFx.Common;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MvcApp.Web.MvcConfig), "PreStart")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(MvcApp.Web.MvcConfig), "PostStart")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MvcApp.Web.MvcConfig), "Stop")]
 namespace MvcApp.Web
 {
     public partial class MvcConfig
@@ -23,5 +25,16 @@ namespace MvcApp.Web
             RegisterRoutes(RouteTable.Routes);
             RegisterBundles(BundleTable.Bundles);
         }
+
+        public static void PostStart()
+        {
+            LogHelper.Log("PostStart");
+        }
+
+        public static void Stop()
+        {
+            LogHelper.Log("Stop");
+        }
+
     }
 }
