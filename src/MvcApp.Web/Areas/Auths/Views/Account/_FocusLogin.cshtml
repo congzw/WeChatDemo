@@ -1,0 +1,12 @@
+﻿@{
+    var errorMessage = "测试";
+}
+<a href="javascript:void(0)" data-toggle="dropdown" data-hover="dropdown">登录</a>
+<div>
+    <img src="~/Content/css/images/status_alert.png" class="img-thumbnail" style="height: 100px; width: 100px;" title="@errorMessage"/>
+    <p>
+        @errorMessage
+        <br/>
+        <a href="@Url.Action("Login", new {Area = "Auths", Controller = "Account"})">账号登录</a>
+    </p>
+</div>

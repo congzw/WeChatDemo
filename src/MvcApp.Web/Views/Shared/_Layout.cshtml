@@ -30,11 +30,25 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <h2>DEMO For Load FocusLogin</h2>
+        <button class="btn btn-primary" id="btnLoad">Load</button>
+        <div id="_FocusLogin" style="background-color: white"></div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - MvcApp</p>
         </footer>
     </div>
+    <script src="~/Content/libs/basic/jquery/jquery-1.12.4.js"></script>
+    <script src="~/Content/libs/basic/holder/holder.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnLoad").click(function() {
+                $("#_FocusLogin").load("/Auths/Account/_FocusLogin", function () {
+                    console.log("Load was performed.");
+                });
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

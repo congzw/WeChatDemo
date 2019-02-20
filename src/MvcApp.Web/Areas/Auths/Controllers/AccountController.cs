@@ -61,5 +61,10 @@ namespace MvcApp.Web.Areas.Auths.Controllers
             _authManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+        
+        public ActionResult _FocusLogin()
+        {
+            return PartialView();
+        }
     }
 }
