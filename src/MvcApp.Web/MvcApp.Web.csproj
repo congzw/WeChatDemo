@@ -106,7 +106,13 @@
     <Compile Include="App_Start\MvcConfig_Filter.cs" />
     <Compile Include="App_Start\MvcConfig.cs" />
     <Compile Include="Areas\Auths\AuthsAreaRegistration.cs" />
+    <Compile Include="Areas\Auths\Controllers\AccountController.cs" />
     <Compile Include="Areas\Auths\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Auths\Models\LoginViewModel.cs" />
+    <Compile Include="Areas\Auths\Models\RegisterViewModel.cs" />
+    <Compile Include="Areas\Demos\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Demos\DemosAreaRegistration.cs" />
+    <Compile Include="Areas\Demos\Models\Foo.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -144,6 +150,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Auths\Views\Shared\" />
+    <Folder Include="Areas\Demos\Views\Shared\" />
     <Folder Include="Content\libs\ace\" />
     <Folder Include="Content\libs\unify\" />
     <Folder Include="Content\scripts\" />
@@ -181,6 +188,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_NavTop.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Auths\Views\Account\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\Account\Lockout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\Account\_LayoutAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\Account\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Demos\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Demos\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\_ViewStart.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

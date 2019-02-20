@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4CAC7D8-ED64-4E49-82DD-EFD6E20F802E}</ProjectGuid>
+    <ProjectGuid>{A69D755F-2CA6-4BCE-B831-0CCEE69168E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommonFx</RootNamespace>
-    <AssemblyName>CommonFx</AssemblyName>
+    <RootNamespace>MvcApp.Web</RootNamespace>
+    <AssemblyName>MvcApp.Web.Dependencies</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\MvcApp.Web\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,8 +38,19 @@
       <HintPath>..\..\lib\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StructureMap, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -71,35 +82,30 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseLib\Auths\Account.cs" />
-    <Compile Include="BaseLib\Auths\AppServices\IAccountAppService.cs" />
-    <Compile Include="Common\Data\ISimpleRepository.cs" />
-    <Compile Include="Common\Data\Model\NbEntity.cs" />
-    <Compile Include="Common\Data\Provider\Memory\MemoryRepository.cs" />
-    <Compile Include="Common\Ioc\CoreServiceProvider.cs" />
-    <Compile Include="Common\Ioc\NullServiceLocator.cs" />
-    <Compile Include="Common\MessageResult.cs" />
-    <Compile Include="Common\MyConfigHelper.cs" />
-    <Compile Include="Common\MyLogHelper.cs" />
-    <Compile Include="Common\MyProjectHelper.cs" />
-    <Compile Include="Common\ResolveAsSingleton.cs" />
-    <Compile Include="Common\Security\AuthManagerContext.cs" />
-    <Compile Include="Common\Security\EmptyAuthManager.cs" />
-    <Compile Include="Common\Security\IAuthManager.cs" />
-    <Compile Include="Common\StringExtensions.cs" />
-    <Compile Include="Common\UtilsDateTime.cs" />
-    <Compile Include="Common\Web\Mvc\AreaRegistrationExtensions.cs" />
+    <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="DependencyResolution\ControllerConvention.cs" />
+    <Compile Include="DependencyResolution\IoC.cs" />
+    <Compile Include="DependencyResolution\Registries\MvcAppRegistry.cs" />
+    <Compile Include="DependencyResolution\Registries\MvcRegistry.cs" />
+    <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BaseLib\Auths\Accounts\" />
-    <Folder Include="BaseLib\Auths\UserContexts\" />
-    <Folder Include="BaseLib\WeChats\" />
+    <Compile Include="_Impl\FormAuthManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonFx\CommonFx.csproj">
+      <Project>{a4cac7d8-ed64-4e49-82dd-efd6e20f802e}</Project>
+      <Name>CommonFx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
