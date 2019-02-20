@@ -19,7 +19,7 @@ namespace CommonFx.Common
         void SetProjectPrefix(string projectPrefix);
 
         /// <summary>
-        /// 获取项目前缀，例如NbLight
+        /// 获取项目前缀，例如FooApp
         /// </summary>
         /// <returns></returns>
         string GetProjectPrefix();
