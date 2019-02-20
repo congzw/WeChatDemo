@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApp.Web", "MvcApp.Web\MvcApp.Web.csproj", "{A6D4FF30-93C0-40F5-8E38-3FCD76B3F31F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFx", "CommonFx\CommonFx.csproj", "{A4CAC7D8-ED64-4E49-82DD-EFD6E20F802E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30652EA7-42F4-4C0B-A3CB-BF2409657790}"
+	ProjectSection(SolutionItems) = preProject
+		..\readme.md = ..\readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{A6D4FF30-93C0-40F5-8E38-3FCD76B3F31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6D4FF30-93C0-40F5-8E38-3FCD76B3F31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6D4FF30-93C0-40F5-8E38-3FCD76B3F31F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CAC7D8-ED64-4E49-82DD-EFD6E20F802E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CAC7D8-ED64-4E49-82DD-EFD6E20F802E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CAC7D8-ED64-4E49-82DD-EFD6E20F802E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CAC7D8-ED64-4E49-82DD-EFD6E20F802E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

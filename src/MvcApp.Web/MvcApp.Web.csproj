@@ -82,6 +82,10 @@
       <Private>True</Private>
       <HintPath>..\..\lib\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\..\lib\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -101,6 +105,8 @@
     <Compile Include="App_Start\MvcConfig_Route.cs" />
     <Compile Include="App_Start\MvcConfig_Filter.cs" />
     <Compile Include="App_Start\MvcConfig.cs" />
+    <Compile Include="Areas\Auths\AuthsAreaRegistration.cs" />
+    <Compile Include="Areas\Auths\Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Auths\Views\Shared\" />
     <Folder Include="Content\libs\ace\" />
     <Folder Include="Content\libs\unify\" />
     <Folder Include="Content\scripts\" />
@@ -159,6 +166,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonFx\CommonFx.csproj">
+      <Project>{a4cac7d8-ed64-4e49-82dd-efd6e20f802e}</Project>
+      <Name>CommonFx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auths\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_NavTop.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
