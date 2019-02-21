@@ -82,6 +82,7 @@
     <Compile Include="Common\Data\ISimpleRepository.cs" />
     <Compile Include="Common\Data\Model\NbEntity.cs" />
     <Compile Include="Common\Data\Provider\Memory\MemoryRepository.cs" />
+    <Compile Include="Common\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Common\Ioc\CoreServiceProvider.cs" />
     <Compile Include="Common\Ioc\NullServiceLocator.cs" />
     <Compile Include="Common\JsonHelper.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="Common\Security\AuthManagerContext.cs" />
     <Compile Include="Common\Security\EmptyAuthManager.cs" />
     <Compile Include="Common\Security\IAuthManager.cs" />
-    <Compile Include="Common\StringExtensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
     <Compile Include="Common\UtilsDateTime.cs" />
     <Compile Include="Common\Web\Mvc\AreaRegistrationExtensions.cs" />
     <Compile Include="Common\Web\Mvc\JsonExtensions.cs" />
