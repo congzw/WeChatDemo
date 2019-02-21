@@ -32,7 +32,7 @@
         @RenderBody()
         <h2>DEMO For Load FocusLogin</h2>
         <button class="btn btn-primary" id="btnLoad">Load</button>
-        <div id="_FocusLogin" style="background-color: white"></div>
+        <div id="_FocusLogin" style="background-color: white; display: none"></div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - MvcApp</p>
@@ -44,7 +44,7 @@
         $(document).ready(function () {
             var loadCompleted = false;
             var isLoginViewShowed = function () {
-                return $("#_FocusLogin").is(':visible');
+                return $("#_FocusLogin").is(':visible') === true;
             };
             var toggleOptions = {
                 duration: 400,
@@ -54,15 +54,34 @@
                 }
             };
             $("#btnLoad").click(function () {
+                
                 if (!loadCompleted) {
                     $("#_FocusLogin").load("/Auths/Account/_FocusLogin", function () {
                         loadCompleted = true;
+                        $("#_FocusLogin").show();
                         console.log('Load was performed! isLoginViewShowed: ' + isLoginViewShowed());
                     });
                 } else {
                     $("#_FocusLogin").toggle(toggleOptions);
                 }
             });
+
+            var callApiCount = 0;
+            var callApi = function() {
+                console.log('calling some api: ' + (++callApiCount));
+                if (callApiCount > 3) {
+                    //mock success
+                    location.href = location.href;
+                }
+            };
+            setInterval(function () {
+                if (isLoginViewShowed()) {
+                    callApi();
+                } else {
+                    //console.log('hide..');
+                }
+            }, 1000);
+
         });
     </script>
     @RenderSection("scripts", required: false)
