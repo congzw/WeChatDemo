@@ -113,6 +113,12 @@
     <Compile Include="Areas\Demos\Controllers\HomeController.cs" />
     <Compile Include="Areas\Demos\DemosAreaRegistration.cs" />
     <Compile Include="Areas\Demos\Models\Foo.cs" />
+    <Compile Include="Areas\WeChats\Controllers\AccountController.cs" />
+    <Compile Include="Areas\WeChats\Controllers\_DemoController.cs" />
+    <Compile Include="Areas\WeChats\Controllers\HomeController.cs" />
+    <Compile Include="Areas\WeChats\Models\WeChatHelper.cs" />
+    <Compile Include="Areas\WeChats\Models\WeChatConfig.cs" />
+    <Compile Include="Areas\WeChats\WeChatsAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -134,6 +140,8 @@
     <Content Include="Content\libs\basic\holder\holder.js" />
     <Content Include="Content\libs\basic\holder\holder.min.js" />
     <Content Include="Content\libs\basic\jquery\jquery-1.12.4.js" />
+    <Content Include="Content\libs\basic\qrcode\jquery.qrcode.js" />
+    <Content Include="Content\libs\basic\qrcode\qrcode.js" />
     <Content Include="Content\libs\basic\require.js" />
     <Content Include="Content\libs\basic\require.min.js" />
     <Content Include="Content\libs\basic\text.js" />
@@ -155,6 +163,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Auths\Views\Shared\" />
     <Folder Include="Areas\Demos\Views\Shared\" />
+    <Folder Include="Areas\WeChats\Views\Shared\" />
     <Folder Include="Content\libs\ace\" />
     <Folder Include="Content\libs\unify\" />
     <Folder Include="Content\scripts\" />
@@ -220,6 +229,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Auths\Views\Account\_FocusLogin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\WeChats\Views\web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\WeChats\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\WeChats\Views\Demo\ShowScan.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\WeChats\Views\Demo\Callback.cshtml" />
+    <Content Include="Areas\WeChats\Views\Demo\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

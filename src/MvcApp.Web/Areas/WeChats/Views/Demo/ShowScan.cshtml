@@ -1,0 +1,38 @@
+﻿@using System.Text
+@using MvcApp.Web.Areas.WeChats.Models
+@{
+
+    
+    var redirectUrl = "http://test.zqnb.com.cn/WeChats/Demos/Callback";
+    //redirectUrl = @HttpUtility.UrlEncode(redirectUrl);
+    redirectUrl = @HttpUtility.UrlEncode(redirectUrl, Encoding.UTF8);
+    var config = WeChatHelper.GetWeChatConfig();
+
+    //参数	        是否必须	    说明
+    //appid	        是	        公众号的唯一标识
+    //redirect_uri	是	        授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理
+    //response_type	是	        返回类型，请填写code
+    //scope	        是	        应用授权作用域，snsapi_base （不弹出授权页面，直接跳转，只能获取用户openid），snsapi_userinfo （弹出授权页面，可通过openid拿到昵称、性别、所在地。并且， 即使在未关注的情况下，只要用户授权，也能获取其信息 ）
+    //state	        否	        重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节
+    //#wechat_redirect	是	    无论直接打开还是做页面302重定向时候，必须带此参数 
+    var scope = "snsapi_base";
+    //var scope = "snsapi_userinfo";
+    
+    var qrconnectUrl = string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope={2}&state=abc#wechat_redirect", config.AppId, redirectUrl, scope);
+    //var qrconnectUrl = string.Format("https://open.weixin.qq.com/connect/qrconnect?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_login&state=abc#wechat_redirect", config.AppId, redirectUrl);
+    
+}
+<h2>@redirectUrl</h2>
+<hr />
+<h2>@(qrconnectUrl)"></h2>
+<hr />
+
+<div id="loginQR"></div>
+<script src="~/Content/libs/basic/jquery/jquery-1.12.4.js"></script>
+<script src="~/Content/libs/basic/qrcode/jquery.qrcode.js"></script>
+<script src="~/Content/libs/basic/qrcode/qrcode.js"></script>
+<script>
+    jQuery('#loginQR').qrcode({
+        text: '@qrconnectUrl'
+    });
+</script>
