@@ -103,6 +103,7 @@
     <Compile Include="Common\Web\Mvc\JsonExtensions.cs" />
     <Compile Include="Common\Web\Mvc\MyControllerBase.cs" />
     <Compile Include="Common\Web\Mvc\MyJsonResult.cs" />
+    <Compile Include="Common\Web\RequestContextHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
