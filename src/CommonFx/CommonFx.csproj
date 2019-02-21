@@ -79,6 +79,8 @@
   <ItemGroup>
     <Compile Include="BaseLib\Auths\Account.cs" />
     <Compile Include="BaseLib\Auths\AppServices\IAccountAppService.cs" />
+    <Compile Include="Common\AppData\FileDbHelper.cs" />
+    <Compile Include="Common\AppData\TypeFilePathHelper.cs" />
     <Compile Include="Common\Data\ISimpleRepository.cs" />
     <Compile Include="Common\Data\Model\NbEntity.cs" />
     <Compile Include="Common\Data\Provider\Memory\MemoryRepository.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Common\Ioc\NullServiceLocator.cs" />
     <Compile Include="Common\JsonHelper.cs" />
     <Compile Include="Common\MessageResult.cs" />
+    <Compile Include="Common\MyAppPath.cs" />
     <Compile Include="Common\MyConfigHelper.cs" />
     <Compile Include="Common\MyLogHelper.cs" />
     <Compile Include="Common\MyProjectHelper.cs" />
