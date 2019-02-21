@@ -42,10 +42,26 @@
     <script src="~/Content/libs/basic/holder/holder.js"></script>
     <script>
         $(document).ready(function () {
-            $("#btnLoad").click(function() {
-                $("#_FocusLogin").load("/Auths/Account/_FocusLogin", function () {
-                    console.log("Load was performed.");
-                });
+            var loadCompleted = false;
+            var isLoginViewShowed = function () {
+                return $("#_FocusLogin").is(':visible');
+            };
+            var toggleOptions = {
+                duration: 400,
+                easing: 'swing',
+                complete: function () {
+                    console.log('toggle completed! isLoginViewShowed: ' + isLoginViewShowed());
+                }
+            };
+            $("#btnLoad").click(function () {
+                if (!loadCompleted) {
+                    $("#_FocusLogin").load("/Auths/Account/_FocusLogin", function () {
+                        loadCompleted = true;
+                        console.log('Load was performed! isLoginViewShowed: ' + isLoginViewShowed());
+                    });
+                } else {
+                    $("#_FocusLogin").toggle(toggleOptions);
+                }
             });
         });
     </script>
