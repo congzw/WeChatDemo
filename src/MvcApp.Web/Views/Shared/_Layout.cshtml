@@ -35,7 +35,7 @@
         <div id="_FocusLogin" style="background-color: white; display: none"></div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - MvcApp</p>
+            <p>&copy; <span style="color: red;">@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span> - MvcApp</p>
         </footer>
     </div>
     <script src="~/Content/libs/basic/jquery/jquery-1.12.4.js"></script>
@@ -65,18 +65,48 @@
                     $("#_FocusLogin").toggle(toggleOptions);
                 }
             });
+            
+            //var callApiCount = 0;
+            //var callApi = function() {
+            //    console.log('calling some api: ' + (++callApiCount));
+            //    if (callApiCount > 3) {
+            //        //mock success
+            //        location.href = location.href;
+            //    }
+            //};
+            //setInterval(function () {
+            //    if (isLoginViewShowed()) {
+            //        callApi();
+            //    } else {
+            //        //console.log('hide..');
+            //    }
+            //}, 1000);
 
-            var callApiCount = 0;
-            var callApi = function() {
-                console.log('calling some api: ' + (++callApiCount));
-                if (callApiCount > 3) {
-                    //mock success
-                    location.href = location.href;
-                }
+            var getUser = function () {
+
+                $.ajax({
+                    type: 'get',
+                    data: {
+                        senceId: 'todo'
+                    },
+                    dataType: 'json',
+                    url: "/Auths/Account/GetFocusLoginUser",
+                    success: function (data) {
+                        console.log(data);
+                        if (data !== null) {
+                            location.reload();
+                        } 
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+
+
             };
             setInterval(function () {
                 if (isLoginViewShowed()) {
-                    callApi();
+                    getUser();
                 } else {
                     //console.log('hide..');
                 }
