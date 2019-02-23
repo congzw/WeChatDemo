@@ -1,0 +1,14 @@
+﻿@{
+    var redirectUrl = "http://test.zqnb.com.cn/WeChats/OAuth/Login";
+}
+<h2>@redirectUrl</h2>
+<hr />
+<div id="loginQR"></div>
+<script src="~/Content/libs/basic/jquery/jquery-1.12.4.js"></script>
+<script src="~/Content/libs/basic/qrcode/jquery.qrcode.js"></script>
+<script src="~/Content/libs/basic/qrcode/qrcode.js"></script>
+<script>
+    jQuery('#loginQR').qrcode({
+        text: '@redirectUrl'
+    });
+</script>

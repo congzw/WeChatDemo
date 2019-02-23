@@ -1,0 +1,34 @@
+﻿@using CommonFx.Common.Web
+@using CommonFx.Common.Web.Mvc
+@using MvcApp.Web.Areas.WeChats.Models
+@using MvcApp.Web.Areas.WeChats.Models.WeChatApis
+@{
+    var requestContextHelper = RequestContextHelper.Resolve();
+    var code = requestContextHelper.TryGetFromRequestParams("code");
+    var state = requestContextHelper.TryGetFromRequestParams("state");
+
+    <h2>code: @code</h2>
+    <h2>state: @state</h2>
+    <hr/>
+    var getAccessToken = new GetAccessToken();
+
+    var config = WeChatHelper.GetWeChatConfig();
+    var callGetAccessToken = getAccessToken.CallGetAccessToken(config.AppId, config.AppSecret, code);
+    <h2>@callGetAccessToken.DisplayMessage</h2>
+    if (!callGetAccessToken.Success())
+    {
+        return;
+    }
+    
+    var accessToken = callGetAccessToken.Result;
+    var getUserInfo = new GetUserInfo();
+    var callGetUserInfo = getUserInfo.CallGetUserInfo(accessToken.access_token, accessToken.openid);
+    var userInfo = callGetUserInfo.Result;
+    <h2>@userInfo.DisplayMessage</h2>
+    if (!userInfo.Success())
+    {
+        return;
+    }
+}
+<p>@userInfo.ToJsonRaw()</p>
+<img src="@userInfo.headimgurl" alt="head logo" />
