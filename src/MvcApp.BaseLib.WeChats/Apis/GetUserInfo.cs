@@ -2,7 +2,7 @@
 
 namespace CommonFx.BaseLib.WeChats.Apis
 {
-    public class GetUserInfo : WeChatApiRequest
+    public class GetUserInfo : WeChatApiResponse<GetUserInfo>
     {
         public GetUserInfo()
         {
@@ -19,22 +19,18 @@ namespace CommonFx.BaseLib.WeChats.Apis
         public IList<string> privilege { get; set; }
         public string unionid { get; set; }
 
-        public WeChatApiResponse<GetUserInfo> CallGetUserInfo(string access_token, string openid)
-        {
-            var apiUri = CreateApiUri(access_token, openid);
-            var httpClient = CreateHttpClient(true);
-            var weChatResult = CallApi<GetUserInfo>(() => httpClient.GetAsync(apiUri));
-            //if (weChatResult.Success())
-            //{
-            //    //todo try copy props
-            //    this = weChatResult.SuccessResult;
-            //}
-            return weChatResult;
-        }
-
         protected override string InitApiUriFormat()
         {
             return "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN";
+        }
+        
+        public static GetUserInfo CallGetUserInfo(string access_token, string openid)
+        {
+            var getUserInfo = new GetUserInfo();
+            var apiUri = getUserInfo.CreateApiUri(access_token, openid);
+            var httpClient = CreateHttpClient(true);
+            var weChatResult = CallApi<GetUserInfo>(() => httpClient.GetAsync(apiUri));
+            return weChatResult;
         }
     }
 }

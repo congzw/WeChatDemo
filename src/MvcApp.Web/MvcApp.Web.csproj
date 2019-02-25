@@ -126,18 +126,10 @@
     <Compile Include="Areas\Demos\Controllers\HomeController.cs" />
     <Compile Include="Areas\Demos\DemosAreaRegistration.cs" />
     <Compile Include="Areas\Demos\Models\Foo.cs" />
-    <Compile Include="Areas\WeChats\Controllers\AccountController.cs" />
     <Compile Include="Areas\WeChats\Controllers\OAuthController.cs" />
-    <Compile Include="Areas\WeChats\Controllers\_DemoController.cs" />
     <Compile Include="Areas\WeChats\Controllers\HomeController.cs" />
-    <Compile Include="Areas\WeChats\Models\WeChatApi.cs" />
-    <Compile Include="Areas\WeChats\Models\WeChatApis\GetAccessToken.cs" />
-    <Compile Include="Areas\WeChats\Models\WeChatApis\GetUserInfo.cs" />
-    <Compile Include="Areas\WeChats\Models\WeChatApis\WeChatApiRegistry.cs" />
     <Compile Include="Areas\WeChats\Models\WeChatHelper.cs" />
     <Compile Include="Areas\WeChats\Models\WeChatConfig.cs" />
-    <Compile Include="Areas\WeChats\Models\WeChatOAuthApi.cs" />
-    <Compile Include="Areas\WeChats\Models\WeChatResult.cs" />
     <Compile Include="Areas\WeChats\WeChatsAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +211,10 @@
       <Project>{a4cac7d8-ed64-4e49-82dd-efd6e20f802e}</Project>
       <Name>CommonFx</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MvcApp.BaseLib.WeChats\MvcApp.BaseLib.WeChats.csproj">
+      <Project>{0f7b5096-4b1d-4a31-821e-b177bc89e96d}</Project>
+      <Name>MvcApp.BaseLib.WeChats</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Auths\Views\Home\Index.cshtml" />
@@ -259,13 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\WeChats\Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\WeChats\Views\Demo\ShowScan.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\WeChats\Views\Demo\Callback.cshtml" />
-    <Content Include="Areas\WeChats\Views\Demo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\WeChats\Views\OAuth\Index.cshtml" />

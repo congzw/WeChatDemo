@@ -23,14 +23,14 @@ namespace CommonFx.BaseLib.WeChats
 
         protected abstract string InitApiUriFormat();
 
-        public HttpClient CreateHttpClient(bool https = true)
+        public static HttpClient CreateHttpClient(bool https = true)
         {
             return WebApiHelper.Create(https);
         }
-
-        public WeChatApiResponse<TApiResult> CallApi<TApiResult>(Func<Task<HttpResponseMessage>> apiFunc) where TApiResult : new()
+        
+        public static TApiResponse CallApi<TApiResponse>(Func<Task<HttpResponseMessage>> apiFunc) where TApiResponse : WeChatApiResponse<TApiResponse>, new()
         {
-            var failAppendDesc = typeof(TApiResult).Name;
+            var failAppendDesc = typeof(TApiResponse).Name;
             var responseMessage = apiFunc().Result;
 
             if (responseMessage.IsSuccessStatusCode)
@@ -40,13 +40,13 @@ namespace CommonFx.BaseLib.WeChats
                 if (apiJson.Contains("errcode") && apiJson.Contains("errmsg"))
                 {
                     var errorResult = JsonHelper.Deserialize<ErrorResult>(apiJson);
-                    return WeChatApiResponse<TApiResult>.CreateErrorResult(errorResult, failAppendDesc);
+                    return WeChatApiResponse<TApiResponse>.CreateErrorResult(errorResult, failAppendDesc);
                 }
                 //{...}
-                var weChatResult = JsonHelper.Deserialize<TApiResult>(apiJson);
-                return WeChatApiResponse<TApiResult>.CreateSuccessResult(weChatResult, failAppendDesc);
+                return WeChatApiResponse<TApiResponse>.CreateSuccessResult(apiJson, failAppendDesc);
             }
-            return WeChatApiResponse<TApiResult>.CreateUnexpectResult(new UnexpectResult() { StatusCode = (int)responseMessage.StatusCode }, failAppendDesc);
+            return WeChatApiResponse<TApiResponse>.CreateUnexpectResult(new UnexpectResult() { StatusCode = (int)responseMessage.StatusCode }, failAppendDesc);
         }
     }
+
 }

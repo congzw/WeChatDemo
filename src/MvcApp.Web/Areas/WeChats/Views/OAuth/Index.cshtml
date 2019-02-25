@@ -1,6 +1,22 @@
-﻿@{
+﻿@using CommonFx.BaseLib.WeChats
+@using CommonFx.Common
+@{
     var redirectUrl = "http://test.zqnb.com.cn/WeChats/OAuth/Login";
 }
+@helper showWeChatApiRegistry()
+{
+    var myProjectHelper = MyProjectHelper.Resolve();
+    var assemblies = myProjectHelper.LoadAppAssemblies();
+    var weChatApiRegistry = WeChatApiRegistry.Instance;
+    weChatApiRegistry.Init(assemblies);
+    foreach (var item in weChatApiRegistry.WeChatApis)
+    {
+        <p>@item.Value.WeChatApiType.Name : @item.Value.WeChatApiUriFormat</p>
+    }
+}
+
+@showWeChatApiRegistry()
+<hr />
 <h2>@redirectUrl</h2>
 <hr />
 <div id="loginQR"></div>

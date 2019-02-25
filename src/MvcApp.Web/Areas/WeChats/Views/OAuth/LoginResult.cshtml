@@ -2,34 +2,28 @@
 @using CommonFx.Common.Web
 @using CommonFx.Common.Web.Mvc
 @{
+    
     var requestContextHelper = RequestContextHelper.Resolve();
     var code = requestContextHelper.TryGetFromRequestParams("code");
     var state = requestContextHelper.TryGetFromRequestParams("state");
 
     <h2>code: @code</h2>
     <h2>state: @state</h2>
-    <hr/>
-
+    <hr />
     var config = MvcApp.Web.Areas.WeChats.Models.WeChatHelper.GetWeChatConfig();
 
-    var getAccessToken = new GetAccessToken();
-    var callGetAccessToken = getAccessToken.CallGetAccessToken(config.AppId, config.AppSecret, code);
-    <h2>@callGetAccessToken.DisplayMessage</h2>
-    if (!callGetAccessToken.Success())
+    var getAccessToken = GetAccessToken.CallGetAccessToken(config.AppId, config.AppSecret, code);
+    <h2>@getAccessToken.DisplayMessage</h2>
+    if (!getAccessToken.Success())
     {
         return;
     }
-
-    getAccessToken = callGetAccessToken.SuccessResult;
-    var getUserInfo = new GetUserInfo();
-    var callGetUserInfo = getUserInfo.CallGetUserInfo(getAccessToken.access_token, getAccessToken.openid);
-    <h2>@callGetUserInfo.DisplayMessage</h2>
-    if (!callGetAccessToken.Success())
+    var getUserInfo = GetUserInfo.CallGetUserInfo(getAccessToken.access_token, getAccessToken.openid);
+    <h2>@getUserInfo.DisplayMessage</h2>
+    if (!getUserInfo.Success())
     {
         return;
     }
-    
-    getUserInfo = callGetUserInfo.SuccessResult;
 }
 <p>@getUserInfo.ToJsonRaw()</p>
 <img src="@getUserInfo.headimgurl" alt="head logo" />

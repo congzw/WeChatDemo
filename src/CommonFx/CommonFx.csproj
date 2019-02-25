@@ -92,10 +92,8 @@
   <ItemGroup>
     <Compile Include="BaseLib\Auths\Account.cs" />
     <Compile Include="BaseLib\Auths\AppServices\IAccountAppService.cs" />
-    <Compile Include="BaseLib\WeChats\Apis\GetUserInfo.cs" />
     <Compile Include="BaseLib\WeChats\WeChatApiRegistry.cs" />
     <Compile Include="BaseLib\WeChats\WeChatApiRequest.cs" />
-    <Compile Include="BaseLib\WeChats\Apis\GetAccessToken.cs" />
     <Compile Include="BaseLib\WeChats\WeChatApiResponse.cs" />
     <Compile Include="Common\AppData\FileDbHelper.cs" />
     <Compile Include="Common\AppData\TypeFilePathHelper.cs" />

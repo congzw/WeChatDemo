@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using CommonFx.Common;
 
 namespace CommonFx.BaseLib.WeChats
 {
-    public class WeChatApiResponse<T>
+    public abstract class WeChatApiResponse<T> : WeChatApiRequest where T : WeChatApiResponse<T>, new()
     {
-        /// <summary>
-        /// 正确的结果
-        /// </summary>
-        public T SuccessResult { get; set; }
         /// <summary>
         /// 出错的结果
         /// </summary>
@@ -29,26 +29,40 @@ namespace CommonFx.BaseLib.WeChats
             return ErrorResult == null && UnexpectResult == null;
         }
 
-
-        public static WeChatApiResponse<T> CreateSuccessResult(T successResult, string appendDesc = null)
+        public static T CreateResult(HttpResponseMessage responseMessage, string appendDesc = null)
         {
-            return new WeChatApiResponse<T>()
+            var failAppendDesc = typeof(T).Name;
+            if (responseMessage.IsSuccessStatusCode)
             {
-                SuccessResult = successResult,
-                DisplayMessage = string.Format("微信接口调用成功，返回结果信息。{0}", appendDesc)
-            };
+                //{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: xflAP0yFe-lted_ ]"}
+                var apiJson = responseMessage.Content.ReadAsStringAsync().Result;
+                if (apiJson.Contains("errcode") && apiJson.Contains("errmsg"))
+                {
+                    var errorResult = JsonHelper.Deserialize<ErrorResult>(apiJson);
+                    return CreateErrorResult(errorResult, failAppendDesc);
+                }
+                //{...}
+                return CreateSuccessResult(apiJson, failAppendDesc);
+            }
+            return CreateUnexpectResult(new UnexpectResult() { StatusCode = (int)responseMessage.StatusCode }, failAppendDesc);
         }
-        public static WeChatApiResponse<T> CreateErrorResult(ErrorResult errorResult, string appendDesc = null)
+        public static T CreateSuccessResult(string json, string appendDesc = null)
         {
-            return new WeChatApiResponse<T>()
+            var deserialize = JsonHelper.Deserialize<T>(json);
+            deserialize.DisplayMessage = string.Format("微信接口调用成功，返回结果信息。{0}", appendDesc);
+            return deserialize;
+        }
+        public static T CreateErrorResult(ErrorResult errorResult, string appendDesc = null)
+        {
+            return new T
             {
                 ErrorResult = errorResult,
                 DisplayMessage = string.Format("微信接口调用失败，返回出错信息。{0}", appendDesc)
             };
         }
-        public static WeChatApiResponse<T> CreateUnexpectResult(UnexpectResult unexpectResult, string appendDesc = null)
+        public static T CreateUnexpectResult(UnexpectResult unexpectResult, string appendDesc = null)
         {
-            return new WeChatApiResponse<T>()
+            return new T
             {
                 UnexpectResult = unexpectResult,
                 DisplayMessage = string.Format("微信接口调用异常。{0}", appendDesc)
