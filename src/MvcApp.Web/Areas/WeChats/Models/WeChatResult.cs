@@ -52,25 +52,14 @@ namespace MvcApp.Web.Areas.WeChats.Models
     {
         protected WeChatCommand()
         {
-            ApiUriFormat = GetApiUriFormat();
             ApiKey = GetType().Name;
         }
-
-        protected virtual string GetApiUriFormat()
-        {
-            throw new NotImplementedException();
-        }
-
         public string ApiKey { get; set; }
         public string ApiUriFormat { get; set; }
         public string CreateApiUri(params object[] args)
         {
             return string.Format(ApiUriFormat, args);
         }
-        //public WeChatResult<TApiResult> CallWeChatApi<TApiResult>(Func<Task<HttpResponseMessage>> apiFunc) where TApiResult : new()
-        //{
-        //    return CallApi<TApiResult>(apiFunc);
-        //}
         
         #region static helpers
 

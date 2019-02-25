@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace MvcApp.Web.Areas.WeChats.Models.WeChatApis
+namespace CommonFx.BaseLib.WeChats.Apis
 {
-    public class GetUserInfo : WeChatResult<GetUserInfo>
+    public class GetUserInfo : WeChatApiRequest
     {
         public GetUserInfo()
         {
             privilege = new List<string>();
-            ApiUriFormat = "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN";
         }
 
         public string openid { get; set; }
@@ -19,13 +18,23 @@ namespace MvcApp.Web.Areas.WeChats.Models.WeChatApis
         public string headimgurl { get; set; }
         public IList<string> privilege { get; set; }
         public string unionid { get; set; }
-        
-        public WeChatResult<GetUserInfo> CallGetUserInfo(string access_token, string openid)
+
+        public WeChatApiResponse<GetUserInfo> CallGetUserInfo(string access_token, string openid)
         {
-            var httpClient = CreateHttpClient(true);
             var apiUri = CreateApiUri(access_token, openid);
+            var httpClient = CreateHttpClient(true);
             var weChatResult = CallApi<GetUserInfo>(() => httpClient.GetAsync(apiUri));
-            return weChatResult.Result;
+            //if (weChatResult.Success())
+            //{
+            //    //todo try copy props
+            //    this = weChatResult.SuccessResult;
+            //}
+            return weChatResult;
+        }
+
+        protected override string InitApiUriFormat()
+        {
+            return "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN";
         }
     }
 }
